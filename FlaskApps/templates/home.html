@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>HomePage</title>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='styles/style.css')}}">
+</head>
+<body style="background-color:#2d3436;">
+    
+<ul>
+  <li><a href="home">Dashboard</a></li>
+  <li><a href="visualizations">Visualizations</a></li>
+  <li><a href="#contact">Model</a></li>
+  <li><a href="#about">About</a></li>
+</ul>
+
+<div class="slideshow-container">
+
+    <div class="mySlides slideBox fade">
+      <div class="numbertext">1 / 3</div>
+      <img src="{{url_for('static',filename='images/fitbit.png')}}">
+      <div class="text1">Sentiment Analysis of FITBIT Versa 2</div>
+    </div>
+    
+    <div class="mySlides fade">
+      <div class="numbertext">2 / 3</div>
+      <img src="https://m.media-amazon.com/images/S/aplus-media/vc/da7eacbe-ae24-48b1-8468-2121cfeae381.__CR0,0,1464,600_PT0_SX1464_V1___.png" style="width:100%">
+      <div class="text">Caption Two</div>
+    </div>
+    
+    <div class="mySlides fade">
+      <div class="numbertext">3 / 3</div>
+      <img src="https://m.media-amazon.com/images/S/aplus-media/vc/3ea362c8-336f-4c00-a11f-3eb1739d51e5.__CR0,0,1464,600_PT0_SX1464_V1___.jpg" style="width:100%">
+      <div class="text">Caption Three</div>
+    </div>
+    
+    </div>
+    <br>
+    
+    <div style="text-align:center">
+      <span class="dot"></span> 
+      <span class="dot"></span> 
+      <span class="dot"></span> 
+    </div>
+    <div style="padding: 2%;background-color: lavenderblush;">
+      <div class="background">
+        <div class="transbox">
+          <h2 style="text-align: center;">Sentiments Analysis✌</h2>
+        </div>
+      </div>
+        <div class="row">
+        <div style="width: 40%;background: #e2e2e2;text-align: center;padding: 5%;padding-left: 1%;border-radius: 3%;">
+          <h2>User Input(s)</h2>
+          <h4>Single Review Analysis</h4>
+          <form class="form-inline" action='/predict' method="POST">
+            <input name="review" style="width: 280px;"/>
+            </label>
+            <button type="submit">Submit</button>
+          </form>
+          <h4>Mutiple Reviews Analysis</h4>
+          <h6>Upload your input CSV file</h6>
+          <form class="form-inline" action='/predict' method="POST">
+            <input type="file" #input name="review" style="display: block;"/>
+          </label>
+          <button type="submit">Explore</button> 
+          </form>
+        </div>
+        <div style="width: 60%;background: whitesmoke;text-align: left;">
+          <h1>{{message}}</h1>
+        </div>
+      </div>
+        
+    </div>
+    
+    <script>
+    var slideIndex = 0;
+    showSlides();
+    
+    function showSlides() {
+      var i;
+      var slides = document.getElementsByClassName("mySlides");
+      var dots = document.getElementsByClassName("dot");
+      for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";  
+      }
+      slideIndex++;
+      if (slideIndex > slides.length) {slideIndex = 1}    
+      for (i = 0; i < dots.length; i++) {
+        dots[i].className = dots[i].className.replace(" active", "");
+      }
+      slides[slideIndex-1].style.display = "block";  
+      dots[slideIndex-1].className += " active";
+      setTimeout(showSlides, 10000); // Change image every 2 seconds
+    }
+    </script>
+    
+</body>
+</html>
